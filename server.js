@@ -17,6 +17,15 @@ app.use(express.static(path.join(__dirname, 'Develop', 'public')));
 app.get('/notes', (req, res) => res.sendFile(notesPath));
 app.get('*', (req, res) => res.sendFile(indexPath));
 
+app.get('/api/notes', (req, res) => {
+  fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.json(JSON.parse(data));
+    }
+  });
+});
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
