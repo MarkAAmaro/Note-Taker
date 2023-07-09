@@ -1,8 +1,7 @@
-// server.js
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const { v4: uuidv4 } = require('uuid'); 
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,7 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'Develop', 'public')));
 
 app.get('/notes', (req, res) => res.sendFile(notesPath));
-app.get('*', (req, res) => res.sendFile(indexPath));
 
 app.get('/api/notes', (req, res) => {
   fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
@@ -27,10 +25,9 @@ app.get('/api/notes', (req, res) => {
   });
 });
 
-
 app.post('/api/notes', (req, res) => {
   const note = req.body;
-  note.id = uuidv4(); 
+  note.id = uuidv4();
 
   fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
     if (err) {
@@ -43,12 +40,14 @@ app.post('/api/notes', (req, res) => {
         if (err) {
           console.error(err);
         } else {
-          res.json(note); 
+          res.json(note);
         }
       });
     }
   });
 });
+
+app.get('*', (req, res) => res.sendFile(indexPath));
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
