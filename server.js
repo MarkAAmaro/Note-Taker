@@ -27,6 +27,29 @@ app.get('/api/notes', (req, res) => {
   });
 });
 
+
+app.post('/api/notes', (req, res) => {
+  const note = req.body;
+  note.id = uuidv4(); 
+
+  fs.readFile('./Develop/db/db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const notes = JSON.parse(data);
+      notes.push(note);
+
+      fs.writeFile('./Develop/db/db.json', JSON.stringify(notes), (err) => {
+        if (err) {
+          console.error(err);
+        } else {
+          res.json(note); 
+        }
+      });
+    }
+  });
+});
+
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
