@@ -31,3 +31,6 @@ To use the application, follow these steps:
 
   ## Heroku URL
 - https://blooming-gorge-29845-2d509e3d7e27.herokuapp.com/
+![img1](./Develop/public/assets/Note-Taker%20img.jpg)
+
+![img1](./Develop/public/assets/testimage.jpg)
