@@ -29,5 +29,5 @@ To use the application, follow these steps:
 
 - You can write a new note at any time by clicking on the "+" icon in the top right corner. This will clear the fields and allow you to write a new note.
 
-- ## Heroku URL
+  ## Heroku URL
 - https://blooming-gorge-29845-2d509e3d7e27.herokuapp.com/
